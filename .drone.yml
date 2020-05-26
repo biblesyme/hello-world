@@ -1,46 +1,15 @@
 kind: pipeline
 type: docker
-name: greeting
+name: default
 
 steps:
-  - name: en
-    image: alpine:3.8
-    commands:
-      - echo $DRONE_SYSTEM_VERSION
-      - echo hello
-      - echo world
-      - sleep 10
-      - exit 1
-
----
-kind: pipeline
-type: docker
-name: saludo
-
-steps:
-  - name: es
-    image: alpine:3.8
-    commands:
-      - echo hola
-      - echo mundo
-
----
-kind: pipeline
-type: docker
-name: salutation
-
-steps:
-  - name: fr
-    image: alpine:3.8
-    commands:
-      - echo bonjour
-      - echo monde
-      - echo $DRONE_BUILD_STATUS
+- name: test
+  image: busybox
+  commands:
+  - echo "promoted"
 
 trigger:
-  status:
-  - failure
-
-depends_on:
-  - greeting
-  - saludo
+  event:
+  - promote
+  target:
+  - production
