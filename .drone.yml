@@ -6,6 +6,7 @@ steps:
   - name: en
     image: alpine:3.8
     commands:
+      - echo $DRONE_SYSTEM_VERSION
       - echo hello
       - echo world
       - sleep 10
