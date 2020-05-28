@@ -13,6 +13,7 @@ kind: pipeline
 type: docker
 name: second
 
+steps:
 - name: 2
   image: busybox
   commands:
